@@ -11,6 +11,8 @@ It demonstrates a complete performance goal lifecycle across three key business 
 The portal supports goal creation, manager review, return-for-rework, approval locking, quarterly achievement capture, backend-driven score calculation, manager check-ins, HR analytics, audit history, shared KPI templates, escalation monitoring, notification tracking, CSV export, and demo reset.
 
 ---
+## Video 
+https://youtu.be/xJfsyw2Q108
 
 ## Live Demo
 
