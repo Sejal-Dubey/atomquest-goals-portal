@@ -1,127 +1,587 @@
-# AtomQuest Goals Portal — Hackathon PoC
+Absolutely — paste this directly into your `README.md`. I made it judge-friendly, professional, and aligned with the submission deliverables.
 
-A working enterprise goal-setting, L1 manager approval, quarterly check-in, HR governance, analytics, escalation, and notification-ready PoC for Atomberg's goal-management workflow.
+````md
+# AtomQuest Goals Portal
 
+AtomQuest Goals Portal is a judge-ready enterprise goal planning, manager review, HR governance, and performance tracking proof of concept.
+
+The portal demonstrates an end-to-end goal lifecycle across three business roles:
+
+- Employee
+- Manager
+- HR/Admin
+
+It supports goal creation, L1 manager review, return-for-rework, approval locking, quarterly progress updates, manager check-ins, HR analytics, audit history, shared KPI templates, escalation monitoring, notification tracking, CSV export, and demo reset.
+
+---
 
 ## Live Demo
 
-Frontend: https://atomquest-goals-portal-pyqq.vercel.app/  
-Backend API Health: https://atomquest-goals-portal.onrender.com/health
+Frontend Portal:  
+https://atomquest-goals-portal-pyqq.vercel.app/
 
-## What is implemented
+Backend API Health Check:  
+https://atomquest-goals-portal.onrender.com/health
 
-- Employee goal creation with validation: max 8 goals, minimum 10% weightage, total 100%.
-- Shared KPI templates: HR creates reusable department KPIs; employees can pull them into sheets.
-- L1 Manager review: inline target/weightage edits, return for rework, approve and lock.
-- Employee Q1 progress capture: actuals entered by employee, score calculated by backend.
-- Manager team check-in: manager reviews planned vs actual and records feedback.
-- HR/Admin governance: completion dashboard, audit trail, shared KPI management, escalation monitor, notifications, CSV export.
-- Demo reset: restores seeded data instantly through `POST /demo/reset`.
-- Notification-ready architecture: in-app communication log plus optional Teams webhook test endpoint.
-- Entra-ready configuration placeholders: clean environment variables for future Microsoft Entra ID OIDC integration.
+Source Code Repository:  
+https://github.com/Sejal-Dubey/atomquest-goals-portal
 
-## Tech stack
+---
 
-Frontend: React 19, TypeScript, Vite, Tailwind-style CSS, lucide-react.
-Backend: .NET 10 Web API, EF Core 10, in-memory demo DB by default, optional PostgreSQL through connection string.
+## Role Access
 
-## Local run
+This proof of concept does not require login credentials.
 
-### Backend
+Judges can switch between journeys directly from the top navigation:
 
-```bash
-cd backend/AtomQuest.Api
-dotnet restore
-dotnet run --urls http://localhost:5000
+- Setup
+- Employee
+- Manager
+- Admin
+
+This makes the evaluation flow faster and avoids authentication friction during judging.
+
+---
+
+## Recommended Demo Flow
+
+Use the following path to test the complete workflow.
+
+### 1. Reset Demo Data
+
+Go to:
+
+Setup
+
+
+Click:
+Reset Demo Data
+
+
+This restores the default sample workspace so the complete flow can be tested from the beginning.
+
+---
+
+### 2. Employee Creates and Submits Goals
+
+Go to:
+
+Employee → Goal Sheet
+
+
+The employee can:
+
+* Review existing goals
+* Add or edit individual goals
+* Select shared KPI templates
+* Maintain total weightage at 100%
+* Save draft
+* Submit goals to L1 Manager
+
+Expected result:
+
+Goal sheet status becomes Submitted
+Employee editing is locked
+Manager receives the sheet in Approval Inbox
+
+---
+
+### 3. Manager Reviews Submitted Goals
+
+Go to:
+Manager → Approval Inbox
+
+Open the employee goal sheet.
+
+The manager can:
+
+* Review all goals
+* Adjust targets and weightage inline
+* Return the sheet for rework with comments
+* Approve and lock the sheet
+
+---
+
+### 4. Return for Rework Flow
+
+In:
+Manager → Review Sheet
+
+
+Click:
+Return for Rework
+
+
+Expected result:
+Employee can edit the sheet again
+Manager feedback is visible
+Goal sheet status becomes Returned
+
+---
+
+### 5. Employee Resubmits
+
+Go to:
+Employee → Goal Sheet
+
+
+Make a small change, then click:
+
+Submit to L1 Manager
+
+
+Expected result:
+Goal sheet status becomes Submitted again
+Editing is frozen again
+Manager can review it again
+
+---
+
+### 6. Manager Approves and Locks
+
+Go to:
+Manager → Review Sheet
+
+
+Click:
+Approve & Lock
+
+Expected result:
+
+Goal sheet status becomes Approved
+Employee goal editing is locked
+Quarterly check-in becomes available
+
+
+
+### 7. Employee Captures Quarterly Progress
+
+Go to:
+
+Employee → Q1 Check-in
+
+Enter actual achievement values and save progress.
+
+The backend calculates scores automatically using the goal success measure:
+
+* Higher value is better
+* Lower value is better
+
+Example scoring:
+
+Higher is better:
+Score = Actual / Target × 100
+
+Lower is better:
+Score = Target / Actual × 100
+
+
+Score colors:
+
+Green: >= 90
+Amber: 70–89
+Red: < 70
+
+
+### 8. Manager Completes Team Check-in
+
+Go to:
+
+Manager → Team Check-ins
+
+
+The manager can:
+
+* Review planned vs actual performance
+* See calculated scores
+* Add a structured manager comment
+* Complete the quarterly check-in
+
+Expected result:
+
+Q1 check-in is marked complete
+HR/Admin dashboards update
+Audit trail and notification log capture the action
+
+
+### 9. HR/Admin Governance Review
+
+Go to:
+
+Admin
+
+
+The HR/Admin workspace includes:
+
+* Dashboard
+* Analytics
+* Completion tracking
+* Audit Trail
+* Shared KPIs
+* Escalations
+* Notifications
+* CSV export
+
+HR/Admin can review the entire goal cycle from a governance perspective.
+
+---
+
+## Key Features
+
+### Employee Workspace
+
+The employee workspace supports:
+
+* Goal planning
+* Draft saving
+* Goal submission
+* Shared KPI selection
+* Return-for-rework correction
+* Quarterly actual achievement entry
+* Backend-calculated progress score display
+
+---
+
+### Manager Workspace
+
+The manager workspace supports:
+
+* Approval inbox
+* Goal review
+* Inline target and weightage edits
+* Return for rework with comment
+* Approve and lock workflow
+* Team quarterly check-in review
+* Manager check-in completion
+
+---
+
+### HR/Admin Workspace
+
+The HR/Admin workspace supports:
+
+* Governance overview
+* Performance analytics
+* Completion dashboard
+* Audit trail
+* Shared KPI template management
+* Escalation monitoring
+* Notification event tracking
+* Achievement CSV export
+* Demo data reset
+
+---
+
+## Architecture Overview
+
+AtomQuest Goals Portal uses a separated frontend and backend architecture.
+
+```text
++-----------------------------+
+|          User Browser        |
+|  Employee / Manager / Admin |
++--------------+--------------+
+               |
+               | HTTPS
+               v
++-----------------------------+
+|        Frontend App          |
+|        React + Vite          |
+|        Hosted on Vercel      |
++--------------+--------------+
+               |
+               | REST API calls
+               v
++-----------------------------+
+|        Backend API           |
+|        ASP.NET Core Web API  |
+|        Hosted on Render      |
++--------------+--------------+
+               |
+               | In-memory demo data
+               v
++-----------------------------+
+|     Demo Data Layer          |
+| Employees, Goals, Reviews,  |
+| Q1 Updates, Audit Events,   |
+| Notifications, Escalations  |
++-----------------------------+
 ```
+
+---
+
+## Technology Stack
 
 ### Frontend
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
+React
+TypeScript
+Vite
+CSS
+Vercel Hosting
 
-Open the Vite URL, normally `http://localhost:5173`.
 
-## Demo path for judges
+The frontend is responsible for:
 
-1. Click **Setup** in the top navigation.
-2. Click **Reset Demo Data** so the app starts from a clean seeded state.
-3. Go to **Employee → Goal Sheet** and submit the goal sheet.
-4. Go to **Manager → Approval Inbox**, open the sheet, return once for rework.
-5. Go back to **Employee → Goal Sheet**, edit, then resubmit.
-6. Go to **Manager → Review Sheet**, optionally edit target/weightage, then approve and lock.
-7. Go to **Employee → Q1 Check-in**, enter actuals, save progress.
-8. Go to **Manager → Team Check-ins**, review scores, add feedback, complete check-in.
-9. Go to **Admin** and review Analytics, Completion, Audit Trail, Shared KPIs, Escalations, Notifications, and CSV export.
+* Role-based journey switching
+* Employee, Manager, Admin, and Setup views
+* Form interactions
+* API calls
+* Displaying workflow status
+* Showing analytics, audit, notifications, and score summaries
 
-## Deployment
+---
 
-### Backend on Render/Railway-style Docker hosting
+### Backend
 
-Use `backend/AtomQuest.Api/Dockerfile`.
+ASP.NET Core Web API
+C#
+Docker
+Render Hosting
 
-Recommended environment variables:
 
-```bash
-ASPNETCORE_ENVIRONMENT=Production
-TEAMS_WEBHOOK_URL=optional
-ENTRA_AUTHORITY=optional
-ENTRA_CLIENT_ID=optional
-ConnectionStrings__Postgres=optional
-```
+The backend is responsible for:
 
-If no Postgres connection string is provided, the backend uses the in-memory demo database and `/demo/reset` remains available.
+* Goal lifecycle APIs
+* Submission and approval state changes
+* Return-for-rework workflow
+* Q1 score calculation
+* Manager check-in completion
+* Audit event creation
+* Notification event creation
+* Escalation check logic
+* Demo reset endpoint
+* CSV export endpoint
 
-### Frontend on Vercel
+---
 
-Set project root to `frontend`.
+### Hosting
 
-Build command:
+Vercel was selected for frontend hosting because it provides fast static deployment for React/Vite applications.
 
-```bash
-npm run build
-```
+Render was selected for backend hosting because it supports containerized ASP.NET Core Web API deployment using Docker.
 
-Output directory:
+GitHub is used for source control and deployment integration.
 
-```bash
-dist
-```
+---
 
-Environment variable:
+## Important API Capabilities
 
-```bash
-VITE_API_BASE_URL=https://YOUR-BACKEND-URL
-```
+The backend exposes REST APIs for:
 
-## Optional Teams test
 
-The app works without a real Teams connector. To enable a real webhook test, set `TEAMS_WEBHOOK_URL` on the backend host and call:
+Health check
+Demo reset
+Goal sheet retrieval
+Goal creation and update
+Goal submission
+Manager return for rework
+Manager approval and locking
+Quarterly actual updates
+Manager check-in completion
+Admin analytics
+Completion dashboard
+Audit trail
+Shared KPI templates
+Escalation checks
+Notification log
+CSV export
 
-```bash
-POST /integrations/teams/test
-```
 
-Without the variable, the same action is stored in the in-app notification log, which keeps the demo stable.
+---
 
-## Key backend endpoints
+## Workflow State Model
 
-- `GET /health`
-- `POST /demo/reset`
-- `GET /integrations/status`
-- `POST /integrations/teams/test`
-- `GET /goalsheets/me`
-- `POST /goalsheets`
-- `POST /goalsheets/{id}/submit`
-- `GET /manager/inbox`
-- `PATCH /manager/goals/{goalId}`
-- `POST /manager/goalsheets/{id}/return`
-- `POST /manager/goalsheets/{id}/approve`
-- `POST /goals/{goalId}/quarterly-update`
-- `POST /manager/checkins`
-- `GET /admin/dashboard`
-- `GET /admin/export-achievements`
+The goal sheet moves through the following states:
+
+
+Draft
+Submitted
+Returned
+Submitted
+Approved
+Q1 In Progress
+Q1 Completed
+
+
+State behavior:
+
+Draft:
+Employee can edit goals.
+
+Submitted:
+Employee editing is locked.
+Manager can review.
+
+Returned:
+Employee can edit again.
+Manager comment is visible.
+
+Approved:
+Goal sheet is locked.
+Q1 achievement capture becomes available.
+
+Q1 Completed:
+Manager has completed the quarterly review.
+HR/Admin can view final progress and governance records.
+
+
+## Notification Design
+
+The application includes a notification-ready architecture.
+
+Instead of sending real external emails or Microsoft Teams messages during judging, the system records outbound communication events in the Admin notification center.
+
+This demonstrates where enterprise integrations would connect while keeping the deployed demo stable.
+
+Notification examples:
+
+Goal sheet submitted
+Goal sheet returned for rework
+Goal sheet approved and locked
+Q1 achievement updated
+Manager check-in completed
+Escalation generated
+
+
+Planned production integrations:
+
+Microsoft Teams webhook
+Email notification service
+Microsoft Entra ID identity integration
+Role-based access control
+Persistent database storage
+
+---
+
+## Escalation Design
+
+The escalation module identifies delayed or incomplete workflow actions.
+
+Current escalation checks include:
+
+Employee has not submitted goals
+Manager has not approved submitted goals
+Q1 check-in is pending after approval
+
+Escalations appear in the HR/Admin escalation monitor and are also captured as notification-ready events.
+
+---
+
+## Audit Trail
+
+The audit trail records important workflow events in append-only style.
+
+Examples:
+
+Goal sheet submitted
+Manager inline edit
+Returned for rework
+Approved and locked
+Quarterly update saved
+Manager check-in completed
+Demo data reset
+
+
+This supports governance, traceability, and appraisal readiness.
+
+
+## CSV Export
+
+HR/Admin can export achievement data as CSV.
+
+The export includes goal and progress information that can be used for:
+
+HR reporting
+Appraisal preparation
+Compliance review
+Offline analysis
+Leadership summaries
+
+
+
+
+## Demo Reset
+
+The Setup page provides:
+
+Reset Demo Data
+
+
+This is important  because it allows the portal to be restored instantly without restarting the backend or redeploying the application.
+
+Backend endpoint:
+
+POST /demo/reset
+
+
+## Why This Architecture Works ?
+
+This architecture was designed to prioritize:
+
+
+Fast evaluation
+Stable hosted demo
+Clear role-based workflows
+Traceable business process
+Backend-driven scoring logic
+Governance visibility
+Deployment simplicity
+Enterprise extensibility
+
+
+The proof of concept intentionally avoids risky half-integrations such as real authentication or live Teams messaging during judging. Instead, it shows integration-ready architecture through notification events, role journeys, audit logs, and hosted APIs.
+
+---
+
+## Production Roadmap
+
+If extended beyond the hackathon, the next steps would be:
+
+Microsoft Entra ID authentication
+Role-based authorization
+Persistent database such as PostgreSQL or SQL Server
+Real Microsoft Teams notifications
+Real email notifications
+Manager hierarchy configuration
+Multi-employee goal cycles
+Advanced analytics dashboards
+Excel/PDF reporting
+Cloud storage for appraisal records
+
+
+
+## Submission Deliverables
+
+### 1. Live Hosted Demo URL
+
+https://atomquest-goals-portal-pyqq.vercel.app/
+
+
+### 2. Source Code Repository
+
+https://github.com/Sejal-Dubey/atomquest-goals-portal
+
+
+### 3. Architecture Diagram
+
+Architecture diagram is included separately as a PDF/image.
+
+### 4. Role Access
+
+No login credentials are required.
+
+Judges can switch between roles directly using the top navigation:
+
+
+
+## Project Summary
+
+AtomQuest Goals Portal demonstrates a complete enterprise goal management lifecycle from employee goal creation to manager approval and HR governance.
+
+It is designed as a polished proof of concept that is easy for judges to open, understand, test, and evaluate.
+
+
+
+
 
