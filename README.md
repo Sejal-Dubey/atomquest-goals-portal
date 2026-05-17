@@ -89,7 +89,7 @@ This restores the default sample workspace and allows the full workflow to be te
 
 ## Persona Flow Diagram
 
-![Workflow Diagram](diagram/workflow.png)
+![Workflow Diagram](diagram/workflow.jpg)
 
 ## Demo Flow
 
