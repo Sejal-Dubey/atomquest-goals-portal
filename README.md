@@ -30,7 +30,7 @@ https://github.com/Sejal-Dubey/atomquest-goals-portal
 
 ## Role Access
 
-No login credentials are required for evaluation.
+No login credentials are required for this POC.
 
 Judges can switch between user journeys directly from the top navigation:
 
@@ -43,7 +43,7 @@ This keeps evaluation fast and avoids authentication friction during judging.
 
 ---
 
-## Recommended First Step for Judges
+## Steps to follow
 
 Start from the **Setup** page.
 
@@ -55,43 +55,42 @@ This restores the default sample workspace and allows the full workflow to be te
 
 ---
 
-## Screenshots
-
-> Add screenshots in this section after uploading them to the repository, for example inside a `/diagram` or `/screenshots` folder.
-
 ### 1. Setup / Demo Reset
 
-![Setup Page](screenshots/setup.png)
+![Setup Page](photos/setup.png)
 
 ### 2. Employee Goal Sheet
 
-![Employee Goal Sheet](screenshots/employee-goal-sheet.png)
+![Employee Goal Sheet](photos/employee.png)
+![Employee Goal Sheet](photos/goal-sheet.png)
 
 ### 3. Manager Review Sheet
 
-![Manager Review Sheet](screenshots/manager-review.png)
+![Manager Review Sheet](photos/manager.png)
 
 ### 4. Employee Q1 Check-in
 
-![Employee Q1 Check-in](screenshots/employee-q1-checkin.png)
+![Employee Q1 Check-in](photos/q1-check-in.png)
 
 ### 5. HR/Admin Analytics
 
-![Admin Analytics](screenshots/admin-analytics.png)
+![Admin Analytics](photos/hr-dashboard.png)
 
 ### 6. Audit Trail and Notifications
 
-![Audit Trail](screenshots/audit-trail.png)
+![Audit Trail](photos/audit-trail.png)
 
 ---
 
 ## Architecture Diagram
 
-> Place the final architecture diagram image inside the repository and update the path below.
-
 ![Architecture Diagram](diagram/architecture-diagram.png)
 
 ---
+
+## Persona Flow Diagram
+
+![Workflow Diagram](diagram/workflow.png)
 
 ## Demo Flow
 
