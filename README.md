@@ -1,6 +1,4 @@
-Absolutely — paste this directly into your `README.md`. I made it judge-friendly, professional, and aligned with the submission deliverables.
 
-````md
 # AtomQuest Goals Portal
 
 AtomQuest Goals Portal is a judge-ready enterprise goal planning, manager review, HR governance, and performance tracking proof of concept.
@@ -13,7 +11,6 @@ The portal demonstrates an end-to-end goal lifecycle across three business roles
 
 It supports goal creation, L1 manager review, return-for-rework, approval locking, quarterly progress updates, manager check-ins, HR analytics, audit history, shared KPI templates, escalation monitoring, notification tracking, CSV export, and demo reset.
 
----
 
 ## Live Demo
 
@@ -26,7 +23,6 @@ https://atomquest-goals-portal.onrender.com/health
 Source Code Repository:  
 https://github.com/Sejal-Dubey/atomquest-goals-portal
 
----
 
 ## Role Access
 
@@ -41,7 +37,6 @@ Judges can switch between journeys directly from the top navigation:
 
 This makes the evaluation flow faster and avoids authentication friction during judging.
 
----
 
 ## Recommended Demo Flow
 
@@ -53,19 +48,15 @@ Go to:
 
 Setup
 
-
 Click:
 Reset Demo Data
 
-
 This restores the default sample workspace so the complete flow can be tested from the beginning.
 
----
 
 ### 2. Employee Creates and Submits Goals
 
 Go to:
-
 Employee → Goal Sheet
 
 
@@ -84,7 +75,6 @@ Goal sheet status becomes Submitted
 Employee editing is locked
 Manager receives the sheet in Approval Inbox
 
----
 
 ### 3. Manager Reviews Submitted Goals
 
@@ -100,7 +90,6 @@ The manager can:
 * Return the sheet for rework with comments
 * Approve and lock the sheet
 
----
 
 ### 4. Return for Rework Flow
 
@@ -117,16 +106,12 @@ Employee can edit the sheet again
 Manager feedback is visible
 Goal sheet status becomes Returned
 
----
-
 ### 5. Employee Resubmits
 
 Go to:
 Employee → Goal Sheet
 
-
 Make a small change, then click:
-
 Submit to L1 Manager
 
 
@@ -135,13 +120,10 @@ Goal sheet status becomes Submitted again
 Editing is frozen again
 Manager can review it again
 
----
-
 ### 6. Manager Approves and Locks
 
 Go to:
 Manager → Review Sheet
-
 
 Click:
 Approve & Lock
@@ -151,7 +133,6 @@ Expected result:
 Goal sheet status becomes Approved
 Employee goal editing is locked
 Quarterly check-in becomes available
-
 
 
 ### 7. Employee Captures Quarterly Progress
@@ -186,9 +167,7 @@ Red: < 70
 ### 8. Manager Completes Team Check-in
 
 Go to:
-
 Manager → Team Check-ins
-
 
 The manager can:
 
@@ -207,9 +186,7 @@ Audit trail and notification log capture the action
 ### 9. HR/Admin Governance Review
 
 Go to:
-
 Admin
-
 
 The HR/Admin workspace includes:
 
