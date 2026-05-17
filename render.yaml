@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: atomquest-api
+    runtime: docker
+    rootDir: backend/AtomQuest.Api
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: TEAMS_WEBHOOK_URL
+        sync: false
+      - key: ENTRA_AUTHORITY
+        sync: false
+      - key: ENTRA_CLIENT_ID
+        sync: false
