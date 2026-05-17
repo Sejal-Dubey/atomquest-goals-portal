@@ -505,10 +505,6 @@ Backend endpoint:
 
 ```http
 POST /demo/reset
-Multi-employee goal cycles
-Advanced analytics dashboards
-Excel/PDF reporting
-Cloud storage for appraisal records
 ```
 
 ## Why This Architecture Works
