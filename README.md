@@ -11,8 +11,9 @@ The portal demonstrates an end-to-end goal lifecycle across three business roles
 
 It supports goal creation, L1 manager review, return-for-rework, approval locking, quarterly progress updates, manager check-ins, HR analytics, audit history, shared KPI templates, escalation monitoring, notification tracking, CSV export, and demo reset.
 
+## Submission Deliverables
 
-## Live Demo
+### 1. Live Hosted Demo URL
 
 Frontend Portal:  
 https://atomquest-goals-portal-pyqq.vercel.app/
@@ -20,15 +21,21 @@ https://atomquest-goals-portal-pyqq.vercel.app/
 Backend API Health Check:  
 https://atomquest-goals-portal.onrender.com/health
 
-Source Code Repository:  
+
+### 2. Source Code Repository
+
 https://github.com/Sejal-Dubey/atomquest-goals-portal
 
 
-## Role Access
+### 3. Architecture Diagram
 
-This proof of concept does not require login credentials.
+Architecture diagram is included separately as a PDF/image.
 
-Judges can switch between journeys directly from the top navigation:
+### 4. Role Access
+
+No login credentials are required.
+
+Judges can switch between roles directly using the top navigation:
 
 - Setup
 - Employee
@@ -36,6 +43,7 @@ Judges can switch between journeys directly from the top navigation:
 - Admin
 
 This makes the evaluation flow faster and avoids authentication friction during judging.
+
 
 
 ## Recommended Demo Flow
@@ -525,40 +533,6 @@ Multi-employee goal cycles
 Advanced analytics dashboards
 Excel/PDF reporting
 Cloud storage for appraisal records
-
-
-
-## Submission Deliverables
-
-### 1. Live Hosted Demo URL
-
-https://atomquest-goals-portal-pyqq.vercel.app/
-
-
-### 2. Source Code Repository
-
-https://github.com/Sejal-Dubey/atomquest-goals-portal
-
-
-### 3. Architecture Diagram
-
-Architecture diagram is included separately as a PDF/image.
-
-### 4. Role Access
-
-No login credentials are required.
-
-Judges can switch between roles directly using the top navigation:
-
-
-
-## Project Summary
-
-AtomQuest Goals Portal demonstrates a complete enterprise goal management lifecycle from employee goal creation to manager approval and HR governance.
-
-It is designed as a polished proof of concept that is easy for judges to open, understand, test, and evaluate.
-
-
 
 
 
