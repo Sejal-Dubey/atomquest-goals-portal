@@ -28,7 +28,7 @@ https://github.com/Sejal-Dubey/atomquest-goals-portal
 
 ### 3. Architecture Diagram
 
-![Uploading 6a35c980-801b-438d-9f14-8cc4789a3407.png…]()
+![Project Logo](diagram/architecture-diagram.png)
 
 
 ### 4. Role Access
