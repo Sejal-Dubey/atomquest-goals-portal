@@ -4,6 +4,7 @@ frontend/dist/
 frontend/.env
 frontend/.env.local
 frontend/.env.production.local
+frontend/tsconfig.tsbuildinfo
 
 # .NET
 backend/**/bin/
