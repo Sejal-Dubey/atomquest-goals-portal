@@ -2,6 +2,12 @@
 
 A working enterprise goal-setting, L1 manager approval, quarterly check-in, HR governance, analytics, escalation, and notification-ready PoC for Atomberg's goal-management workflow.
 
+
+## Live Demo
+
+Frontend: https://atomquest-goals-portal-pyqq.vercel.app/  
+Backend API Health: https://atomquest-goals-portal.onrender.com/health
+
 ## What is implemented
 
 - Employee goal creation with validation: max 8 goals, minimum 10% weightage, total 100%.
@@ -119,6 +125,3 @@ Without the variable, the same action is stored in the in-app notification log, 
 - `GET /admin/dashboard`
 - `GET /admin/export-achievements`
 
-## Why this PoC is shortlist-friendly
-
-It prioritizes a complete, reliable workflow over brittle integrations: the core BRD journey works end to end, every major role has a clear workspace, and HR has evidence through audit logs, completion tracking, notifications, escalations, and exports.
