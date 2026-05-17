@@ -303,6 +303,7 @@ AtomQuest Goals Portal uses a separated frontend and backend architecture.
 | Notifications, Escalations  |
 +-----------------------------+
 
+```
 
 Technology Stack
 Frontend
