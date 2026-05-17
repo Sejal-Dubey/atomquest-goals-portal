@@ -43,6 +43,10 @@ This keeps evaluation fast and avoids authentication friction during judging.
 
 ---
 
+## Architecture Diagram
+
+![Architecture Diagram](diagram/architecture-diagram.png)
+
 ## Steps to follow
 
 Start from the **Setup** page.
@@ -78,15 +82,10 @@ This restores the default sample workspace and allows the full workflow to be te
 
 ### 6. Audit Trail and Notifications
 
-![Audit Trail](photos/audit-trail.png)
+![Audit Trail](photos/audit-trial.png)
 
 ---
 
-## Architecture Diagram
-
-![Architecture Diagram](diagram/architecture-diagram.png)
-
----
 
 ## Persona Flow Diagram
 
