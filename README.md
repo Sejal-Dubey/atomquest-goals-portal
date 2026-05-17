@@ -48,6 +48,8 @@ This keeps evaluation fast and avoids authentication friction during judging.
 
 ## Recommended Demo Flow
 
+![Project Logo](diagram/workflow.jpg)
+
 Use the following path to test the complete workflow.
 
 ### 1. Reset Demo Data
