@@ -305,192 +305,249 @@ AtomQuest Goals Portal uses a separated frontend and backend architecture.
 
 ```
 
-Technology Stack
-Frontend
-React
-TypeScript
-Vite
-CSS
-Vercel Hosting
+## Technology Stack
+
+### Frontend
+
+- React
+- TypeScript
+- Vite
+- CSS
+- Vercel Hosting
 
 The frontend is responsible for:
 
-Role-based journey switching
-Employee, Manager, Admin, and Setup views
-Form interactions
-API calls
-Displaying workflow status
-Showing analytics, audit, notifications, and score summaries
-Backend
-ASP.NET Core Web API
-C#
-Docker
-Render Hosting
+- Role-based journey switching
+- Employee, Manager, Admin, and Setup views
+- Form interactions
+- API calls
+- Displaying workflow status
+- Showing analytics, audit trail, notifications, and score summaries
+
+### Backend
+
+- ASP.NET Core Web API
+- C#
+- Docker
+- Render Hosting
 
 The backend is responsible for:
 
-Goal lifecycle APIs
-Submission and approval state changes
-Return-for-rework workflow
-Q1 score calculation
-Manager check-in completion
-Audit event creation
-Notification event creation
-Escalation check logic
-Demo reset endpoint
-CSV export endpoint
-Hosting
-Vercel was selected for frontend hosting because it provides fast static deployment for React/Vite applications.
-Render was selected for backend hosting because it supports containerized ASP.NET Core Web API deployment using Docker.
-GitHub is used for source control and deployment integration.
-Important API Capabilities
+- Goal lifecycle APIs
+- Submission and approval state changes
+- Return-for-rework workflow
+- Q1 score calculation
+- Manager check-in completion
+- Audit event creation
+- Notification event creation
+- Escalation check logic
+- Demo reset endpoint
+- CSV export endpoint
+
+### Hosting
+
+- Vercel was selected for frontend hosting because it provides fast static deployment for React/Vite applications.
+- Render was selected for backend hosting because it supports containerized ASP.NET Core Web API deployment using Docker.
+- GitHub is used for source control and deployment integration.
+
+---
+
+## Important API Capabilities
 
 The backend exposes REST APIs for:
 
-Health check
-Demo reset
-Goal sheet retrieval
-Goal creation and update
-Goal submission
-Manager return for rework
-Manager approval and locking
-Quarterly actual updates
-Manager check-in completion
-Admin analytics
-Completion dashboard
-Audit trail
-Shared KPI templates
-Escalation checks
-Notification log
-CSV export
-Workflow State Model
+- Health check
+- Demo reset
+- Goal sheet retrieval
+- Goal creation and update
+- Goal submission
+- Manager return for rework
+- Manager approval and locking
+- Quarterly actual updates
+- Manager check-in completion
+- Admin analytics
+- Completion dashboard
+- Audit trail
+- Shared KPI templates
+- Escalation checks
+- Notification log
+- CSV export
+
+---
+
+## Workflow State Model
 
 The goal sheet moves through the following states:
 
-Draft
-Submitted
-Returned
-Submitted
-Approved
-Q1 In Progress
-Q1 Completed
+- Draft
+- Submitted
+- Returned
+- Submitted again after rework
+- Approved
+- Q1 In Progress
+- Q1 Completed
 
-State behavior:
+### State Behavior
 
-Draft
-Employee can edit goals.
-Submitted
-Employee editing is locked.
-Manager can review.
-Returned
-Employee can edit again.
-Manager comment is visible.
-Approved
-Goal sheet is locked.
-Q1 achievement capture becomes available.
-Q1 Completed
-Manager has completed the quarterly review.
-HR/Admin can view final progress and governance records.
-Notification Design
+#### Draft
+
+- Employee can create and edit goals.
+- Employee can save draft.
+- Employee can submit the sheet to the manager.
+
+#### Submitted
+
+- Employee editing is locked.
+- Manager can review the submitted sheet.
+- Manager can approve the sheet or return it for rework.
+
+#### Returned
+
+- Employee editing is unlocked.
+- Manager feedback is visible to the employee.
+- Employee can update the goals and resubmit.
+
+#### Approved
+
+- Goal sheet is locked.
+- Q1 achievement capture becomes available.
+- Employee can enter actual achievement values.
+
+#### Q1 Completed
+
+- Manager has completed the quarterly review.
+- HR/Admin can view final progress, audit records, notifications, and governance data.
+
+---
+
+## Notification Design
 
 The application includes a notification-ready architecture.
 
 Instead of sending real external emails or Microsoft Teams messages during judging, the system records outbound communication events in the Admin notification center.
 
-This demonstrates where enterprise integrations would connect while keeping the deployed demo stable.
+This demonstrates where enterprise integrations would connect while keeping the deployed demo stable and reliable.
 
-Notification examples:
+### Notification Examples
 
-Goal sheet submitted
-Goal sheet returned for rework
-Goal sheet approved and locked
-Q1 achievement updated
-Manager check-in completed
-Escalation generated
+- Goal sheet submitted
+- Goal sheet returned for rework
+- Goal sheet approved and locked
+- Q1 achievement updated
+- Manager check-in completed
+- Escalation generated
 
-Planned production integrations:
+### Planned Production Integrations
 
-Microsoft Teams webhook
-Email notification service
-Microsoft Entra ID identity integration
-Role-based access control
-Persistent database storage
-Escalation Design
+- Microsoft Teams webhook
+- Email notification service
+- Microsoft Entra ID identity integration
+- Role-based access control
+- Persistent database storage
+
+---
+
+## Escalation Design
 
 The escalation module identifies delayed or incomplete workflow actions.
 
 Current escalation checks include:
 
-Employee has not submitted goals
-Manager has not approved submitted goals
-Q1 check-in is pending after approval
+- Employee has not submitted goals
+- Manager has not approved submitted goals
+- Q1 check-in is pending after approval
 
 Escalations appear in the HR/Admin escalation monitor and are also captured as notification-ready events.
 
-Audit Trail
+---
 
-The audit trail records important workflow events in append-only style.
+## Audit Trail
 
-Examples:
+The audit trail records important workflow events in an append-only style.
 
-Goal sheet submitted
-Manager inline edit
-Returned for rework
-Approved and locked
-Quarterly update saved
-Manager check-in completed
-Demo data reset
+### Audit Trail Examples
+
+- Goal sheet submitted
+- Manager inline edit
+- Returned for rework
+- Approved and locked
+- Quarterly update saved
+- Manager check-in completed
+- Demo data reset
 
 This supports governance, traceability, and appraisal readiness.
 
-CSV Export
+---
+
+## CSV Export
 
 HR/Admin can export achievement data as CSV.
 
 The export includes goal and progress information that can be used for:
 
-HR reporting
-Appraisal preparation
-Compliance review
-Offline analysis
-Leadership summaries
-Demo Reset
+- HR reporting
+- Appraisal preparation
+- Compliance review
+- Offline analysis
+- Leadership summaries
 
-The Setup page provides:
+---
 
-Reset Demo Data
+## Demo Reset
+
+The Setup page provides a reset option:
+
+- Reset Demo Data
 
 This is important because it allows the portal to be restored instantly without restarting the backend or redeploying the application.
 
 Backend endpoint:
 
+```http
 POST /demo/reset
-Why This Architecture Works
-
-This architecture was designed to prioritize:
-
-Fast evaluation
-Stable hosted demo
-Clear role-based workflows
-Traceable business process
-Backend-driven scoring logic
-Governance visibility
-Deployment simplicity
-Enterprise extensibility
-
-The proof of concept intentionally avoids risky half-integrations such as real authentication or live Teams messaging during judging. Instead, it shows integration-ready architecture through notification events, role journeys, audit logs, and hosted APIs.
-
-Production Roadmap
-
-If extended beyond the hackathon, the next steps would be:
-
-Microsoft Entra ID authentication
-Role-based authorization
-Persistent database such as PostgreSQL or SQL Server
-Real Microsoft Teams notifications
-Real email notifications
-Manager hierarchy configuration
 Multi-employee goal cycles
 Advanced analytics dashboards
 Excel/PDF reporting
 Cloud storage for appraisal records
+```
+
+## Why This Architecture Works
+
+This architecture was designed to prioritize:
+
+- Fast evaluation
+- Stable hosted demo
+- Clear role-based workflows
+- Traceable business process
+- Backend-driven scoring logic
+- Governance visibility
+- Deployment simplicity
+- Enterprise extensibility
+
+The proof of concept intentionally avoids risky half-integrations such as real authentication or live Teams messaging during judging.
+
+Instead, it shows an integration-ready architecture through:
+
+- Notification events
+- Role-based journeys
+- Audit logs
+- Hosted APIs
+- Admin governance dashboards
+- Escalation monitoring
+
+---
+
+## Production Roadmap
+
+If extended beyond the hackathon, the next steps would be:
+
+- Microsoft Entra ID authentication
+- Role-based authorization
+- Persistent database such as PostgreSQL or SQL Server
+- Real Microsoft Teams notifications
+- Real email notifications
+- Manager hierarchy configuration
+- Multi-employee goal cycles
+- Advanced analytics dashboards
+- Excel/PDF reporting
+- Cloud storage for appraisal records
